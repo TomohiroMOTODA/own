@@ -1,0 +1,186 @@
+/* ==========================================================================
+   PROPRA project page.
+
+   Typographic, not decorative: one serif, near-monochrome, hairlines instead
+   of shadows, a single column. Deliberately no gradients, no cards, no
+   accent colour — the figures are the only colour on the page.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  color-scheme: light;
+
+  /* warm greys — the only palette */
+  --ink:       #1b1917;
+  --ink-2:     #423d38;
+  --ink-3:     #6f685f;
+  --ink-4:     #98918a;
+  --bg:        #fdfcfa;
+  --bg-soft:   #f3f1ec;
+  --line:      #ddd8d1;
+  --line-soft: #eae6e0;
+
+  --col: 44rem;   /* the one column everything sits in */
+
+  /* kept only so tools/snippets/results-chart.html still resolves */
+  --radius: 2px;
+  --shadow: none;
+  --accent: var(--ink);
+  --accent-dark: var(--ink);
+  --accent-soft: var(--bg-soft);
+  --baseline: #8a8379;
+  --neutral: #b6afa6;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink-2);
+  font-family: 'Source Serif 4', Charter, Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.62;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+p { margin: 0 0 1.1em; }
+img, video, svg { max-width: 100%; }
+b, strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--line);
+}
+a:hover { text-decoration-color: currentColor; }
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.28;
+  margin: 0;
+}
+
+.wrap { max-width: var(--col); margin: 0 auto; padding: 0 1.5rem; }
+
+/* ---------- top line: language only ---------------------------------------- */
+.topline {
+  max-width: var(--col); margin: 0 auto;
+  padding: 1.6rem 1.5rem 0;
+  display: flex; justify-content: flex-end; gap: .55rem;
+  font-size: .82rem; color: var(--ink-4);
+}
+.topline a { text-decoration: none; color: var(--ink-4); }
+.topline a:hover { color: var(--ink); }
+.topline a.is-current { color: var(--ink); }
+.topline span { color: var(--line); }
+
+/* ---------- title block ---------------------------------------------------- */
+.head { padding: 2.6rem 0 0; }
+.status {
+  font-size: .82rem; color: var(--ink-4);
+  letter-spacing: .02em; margin-bottom: 1.5rem;
+}
+h1.title {
+  font-size: clamp(1.45rem, 1.05rem + 1.7vw, 2.05rem);
+  line-height: 1.26;
+  letter-spacing: -.008em;
+  margin-bottom: .7rem;
+  text-wrap: pretty;
+}
+.expand { font-size: .95rem; color: var(--ink-3); margin-bottom: 1.6rem; }
+.byline { font-size: .95rem; color: var(--ink-2); margin-bottom: .3rem; }
+.byline + .note { font-size: .86rem; color: var(--ink-4); margin-bottom: 1.5rem; }
+.where { font-size: .95rem; color: var(--ink-3); margin: 0; }
+.where .off { color: var(--ink-4); }
+.where .sep { color: var(--line); padding: 0 .35rem; }
+
+/* ---------- media ---------------------------------------------------------- */
+.media { margin: 2.4rem 0; }
+.media img { display: block; width: 100%; height: auto; border: 1px solid var(--line-soft); }
+.media figcaption,
+.caption { font-size: .88rem; line-height: 1.55; color: var(--ink-3); margin-top: .8rem; }
+figure { margin: 0; }
+
+.slot {
+  position: relative; width: 100%; padding-bottom: 56.25%;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+}
+.slot iframe, .slot video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.slot .waiting {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem;
+  font-size: .88rem; color: var(--ink-4);
+}
+.slot .waiting code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .78rem; color: var(--ink-4);
+}
+
+/* ---------- sections ------------------------------------------------------- */
+section { margin-top: 3.4rem; }
+h2 {
+  font-size: 1.02rem;
+  margin-bottom: .9rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- lede ----------------------------------------------------------- */
+.lede { font-size: 1.06rem; color: var(--ink); margin: 2.2rem 0 1.4rem; }
+
+/* ---------- disclosure ----------------------------------------------------- */
+details { margin-bottom: 1rem; }
+summary {
+  cursor: pointer; font-size: .88rem; color: var(--ink-4);
+  list-style: none; display: inline-block;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '+ '; }
+details[open] summary::before { content: '– '; }
+summary:hover { color: var(--ink); }
+details > div { padding-top: 1rem; }
+details p { font-size: .94rem; color: var(--ink-3); }
+
+/* ---------- rollouts ------------------------------------------------------- */
+.rollouts {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+  margin-top: 1.6rem; padding: 0; list-style: none;
+}
+.rollouts li { margin: 0; }
+.rollouts video, .rollouts img {
+  display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+}
+.rollouts figcaption { font-size: .82rem; color: var(--ink-3); margin-top: .45rem; }
+@media (max-width: 620px) { .rollouts { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- bibtex (only used if that section is uncommented) -------------- */
+pre {
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  padding: 1rem 1.1rem; overflow-x: auto; margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .78rem; line-height: 1.6; color: var(--ink-2);
+}
+.copy-btn {
+  font: inherit; font-size: .82rem; color: var(--ink-4);
+  background: none; border: 0; padding: 0; cursor: pointer; margin-bottom: .5rem;
+}
+.copy-btn:hover { color: var(--ink); }
+
+/* ---------- footer --------------------------------------------------------- */
+footer {
+  margin: 4rem 0 0;
+  padding: 1.2rem 0 3.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .82rem; color: var(--ink-4);
+}
+footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

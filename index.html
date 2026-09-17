@@ -1,518 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- =========================
-       Basic metadata
-       Replace the placeholders below.
-       ========================= -->
-  <meta name="description"
-        content="[PROJECT_DESCRIPTION]">
-  <meta name="keywords"
-        content="[KEYWORD_1], [KEYWORD_2], [KEYWORD_3]">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROPRA — Anchoring Fingertip Sensing to Proprioception and Proactive Actions</title>
+<meta name="description"
+      content="PROPRA pretrains fingertip tactile and proximity encoders against the robot's own state and its next actions.">
+<meta name="robots" content="index, follow">
 
-  <title>[PROJECT_TITLE]</title>
+<link rel="alternate" hreflang="en" href="./index.html">
+<link rel="alternate" hreflang="eo" href="./index_epo.html">
+<link rel="alternate" hreflang="x-default" href="./index.html">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en">
+<meta property="og:title" content="PROPRA: Anchoring Fingertip Sensing to Proprioception and Proactive Actions">
+<meta property="og:description"
+      content="Proprioception and future actions are available throughout manipulation — PROPRA uses them as a sensorimotor anchor to pretrain tactile and proximity encoders.">
+<meta property="og:url" content="https://anonymous.4open.science/w/own-F865/">
+<meta property="og:image" content="./static/images/og_card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="./static/images/og_card.jpg">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
+<link rel="icon" href="./static/images/favicon.svg">
 
-  <!-- Optional favicon -->
-  <link rel="icon" href="./static/images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="./static/css/propra.css">
 
-  <!-- JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
 </head>
 
 <body>
 
-<!-- ============================================================
-     Navigation
-     ============================================================ -->
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button"
-       class="navbar-burger"
-       aria-label="menu"
-       aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+<div class="topline">
+  <a href="./index.html" hreflang="en" class="is-current" aria-current="page">EN</a>
+  <span>/</span>
+  <a href="./index_epo.html" hreflang="eo">EO</a>
+</div>
 
-  <div class="navbar-menu">
-    <div class="navbar-start"
-         style="flex-grow: 1; justify-content: center;">
+<main class="wrap">
 
-      <!-- Optional home / lab link -->
-      <a class="navbar-item" href="[HOME_URL]">
-        <span class="icon">
-          <i class="fas fa-home"></i>
-        </span>
-      </a>
+  <header class="head">
+    <p class="status">Under review</p>
 
-      <!-- Optional related-project menu -->
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">More Research</a>
+    <h1 class="title">
+      Self-Supervised Anchoring of Fingertip Sensing to Proprioception
+      and Proactive Actions for Robot Imitation Learning
+    </h1>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="[RELATED_PROJECT_1_URL]">
-            [RELATED_PROJECT_1]
-          </a>
-          <a class="navbar-item" href="[RELATED_PROJECT_2_URL]">
-            [RELATED_PROJECT_2]
-          </a>
-          <a class="navbar-item" href="[RELATED_PROJECT_3_URL]">
-            [RELATED_PROJECT_3]
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+    <p class="expand"><b>PRO</b>prioceptive-and-<b>PR</b>oactive <b>A</b>nchoring</p>
 
+    <p class="byline">Anonymous Author(s)</p>
+    <p class="note">Withheld for double-blind review.</p>
 
-<!-- ============================================================
-     Hero: title, authors, affiliations, links
-     ============================================================ -->
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
+    <p class="where">
+      <!-- <a href="./static/paper/propra_icra2026_anonymous.pdf">Paper</a><span class="sep">/</span> -->
+      <span class="off">arXiv (soon)</span><span class="sep">/</span><span class="off">Code (soon)</span>
+    </p>
+  </header>
 
-          <h1 class="title is-1 publication-title">
-            [PROJECT_TITLE]
-          </h1>
+  <!-- Teaser -->
+  <div class="media">
+    <div class="slot">
+      <!-- When the video is ready, delete .waiting below and uncomment one of:
 
-          <!-- Authors -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="[AUTHOR_1_URL]">[AUTHOR_1]</a><sup>1</sup>,
-            </span>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="PROPRA"
+              allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
 
-            <span class="author-block">
-              <a href="[AUTHOR_2_URL]">[AUTHOR_2]</a><sup>1</sup>,
-            </span>
-
-            <span class="author-block">
-              <a href="[AUTHOR_3_URL]">[AUTHOR_3]</a><sup>2</sup>
-            </span>
-          </div>
-
-          <!-- Affiliations -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <sup>1</sup>[AFFILIATION_1]
-            </span>
-            <span class="author-block">
-              <sup>2</sup>[AFFILIATION_2]
-            </span>
-          </div>
-
-          <!-- Optional conference / venue -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              [VENUE_AND_YEAR]
-            </span>
-          </div>
-
-          <!-- Links -->
-          <div class="column has-text-centered">
-            <div class="publication-links">
-
-              <!-- Paper -->
-              <span class="link-block">
-                <a href="[PAPER_PDF_URL]"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-
-              <!-- arXiv -->
-              <span class="link-block">
-                <a href="[ARXIV_URL]"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-
-              <!-- Video -->
-              <span class="link-block">
-                <a href="[VIDEO_URL]"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-
-              <!-- Code -->
-              <span class="link-block">
-                <a href="[CODE_URL]"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                </a>
-              </span>
-
-              <!-- Dataset -->
-              <span class="link-block">
-                <a href="[DATASET_URL]"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                </a>
-              </span>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Teaser
-     ============================================================ -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-
-      <!-- Replace with image if preferred:
-      <img src="./static/images/teaser.png"
-           alt="Project teaser image">
-      -->
-
-      <video id="teaser"
-             autoplay
-             muted
-             loop
-             playsinline
-             height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
+      <video controls playsinline preload="metadata" poster="./static/images/fig1_overview.jpg">
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
       </video>
-
-      <h2 class="subtitle has-text-centered">
-        [ONE_OR_TWO_SENTENCE_PROJECT_SUMMARY]
-      </h2>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Result carousel
-     Duplicate/remove items as needed.
-     ============================================================ -->
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-
-      <div id="results-carousel"
-           class="carousel results-carousel">
-
-        <div class="item">
-          <video autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/result_01.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-
-        <div class="item">
-          <video autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/result_02.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-
-        <div class="item">
-          <video autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/result_03.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-
+      -->
+      <div class="waiting">
+        <span>Teaser video</span>
+        <code>static/videos/teaser.mp4</code>
       </div>
     </div>
   </div>
-</section>
 
+  <p class="lede">
+    Fingertip sensors speak only in bursts: proximity just before contact, tactile just after.
+    PROPRA anchors each of them to something the robot always has &mdash; its current state and
+    the actions it is about to execute.
+  </p>
 
-<!-- ============================================================
-     Abstract + Video
-     ============================================================ -->
-<section class="section">
-  <div class="container is-max-desktop">
+  <details>
+    <summary>Abstract</summary>
+    <div>
+      <p>
+        Robotic imitation learning often relies on external cameras, yet local interaction cues such as
+        object proximity, contact onset, and grasp state are difficult to observe near the fingertips
+        because of occlusion and limited temporal resolution. We study how to effectively incorporate
+        complementary fingertip sensing into imitation learning using pressure-sensitive tactile and
+        reflective proximity sensors, along with pretrained sensor encoders.
+      </p>
+      <p>
+        The two modalities provide information at different manipulation phases: proximity sensing is
+        informative before contact, whereas tactile sensing becomes informative after contact. However,
+        naively adding these signals to a policy does not consistently improve performance and can even
+        underperform vision-only policies, suggesting that sparse, phase-dependent sensor signals are
+        difficult to exploit from limited demonstrations.
+      </p>
+      <p>
+        We therefore propose a proprioception-anchored pretraining method, <b>PRO</b>prioceptive-and-<b>PR</b>oactive
+        <b>A</b>nchoring (<b>PROPRA</b>), which independently aligns each fingertip sensor history with
+        proprioceptive and action segments. This provides a continuously available sensorimotor reference,
+        allowing each sensor to be aligned independently during its informative phases.
+      </p>
+      <p>
+        Experiments on real-world manipulation tasks show that our pretraining method improves average
+        success rates over vision-only policies and image-anchored pretraining baselines. Representation
+        analysis further shows that it preserves richer information about pre-contact states, enabling
+        more effective use of complementary fingertip sensing.
+      </p>
+    </div>
+  </details>
 
-    <!-- Abstract -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+  <section id="method">
+    <h2>Method</h2>
 
-        <h2 class="title is-3">Abstract</h2>
+    <figure class="media">
+      <a href="./static/images/fig2_pretrain.png" target="_blank" rel="noopener">
+        <img src="./static/images/fig2_pretrain.png"
+             alt="Two pretraining schemes. (a) Image-anchored alignment ties sensor histories to image embeddings at the current time step. (b) PROPRA ties each sensor history to an anchor built from the current state and the forthcoming action chunk, with no direct sensor-to-sensor objective."
+             width="1800" height="648" loading="lazy">
+      </a>
+      <figcaption>
+        (a) Image-anchored pretraining lines each sensor up with what the camera sees now.
+        (b) PROPRA lines it up with the robot&rsquo;s own state and its next actions &mdash; a reference
+        that exists at every step.
+      </figcaption>
+    </figure>
 
-        <div class="content has-text-justified">
-          <p>
-            [ABSTRACT_PARAGRAPH_1]
-          </p>
+    <p>
+      Each fingertip history &mdash; 0.5&nbsp;s of 3 tactile and 6 proximity channels &mdash; gets its own
+      encoder. The anchor is the current end-effector pose and gripper opening plus the next 10 actions:
+      defined at every step, and needing no camera. A contrastive loss pulls each sensor embedding toward
+      that anchor; the encoders then go into a diffusion policy and the anchor is dropped.
+    </p>
+  </section>
 
-          <p>
-            [ABSTRACT_PARAGRAPH_2]
-          </p>
+  <section id="results">
+    <h2>Results</h2>
+    <p>
+      Four tasks on a UR5e, 20 demonstrations each. PROPRA beats vision-only policies and image-anchored
+      pretraining on average success rate, and keeps more pre-contact information in the proximity
+      representation. The numbers are in the paper.
+    </p>
+  </section>
+
+  <section id="video">
+    <h2>Video</h2>
+
+    <div class="media">
+      <div class="slot">
+        <!-- When the video is ready, delete .waiting below and uncomment one of:
+
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="PROPRA"
+                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+
+        <video controls playsinline preload="metadata" poster="./static/images/fig1_overview.jpg">
+          <source src="./static/videos/supplementary.mp4" type="video/mp4">
+        </video>
+        -->
+        <div class="waiting">
+          <span>Supplementary video</span>
+          <code>static/videos/supplementary.mp4</code>
         </div>
-
       </div>
     </div>
 
-    <!-- Paper video -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+    <ul class="rollouts">
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_pickcup.jpg" aria-label="PickCup rollout">
+          <source src="./static/videos/task_pickcup.mp4" type="video/mp4">
+        </video>
+        <figcaption>PickCup</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_picksponge.jpg" aria-label="PickSponge rollout">
+          <source src="./static/videos/task_picksponge.mp4" type="video/mp4">
+        </video>
+        <figcaption>PickSponge</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_movepen.jpg" aria-label="MovePen rollout">
+          <source src="./static/videos/task_movepen.mp4" type="video/mp4">
+        </video>
+        <figcaption>MovePen</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_openlid.jpg" aria-label="OpenLid rollout">
+          <source src="./static/videos/task_openlid.mp4" type="video/mp4">
+        </video>
+        <figcaption>OpenLid</figcaption>
+      </figure></li>
+    </ul>
+  </section>
 
-        <h2 class="title is-3">Video</h2>
-
-        <div class="publication-video">
-          <iframe
-            src="[YOUTUBE_EMBED_URL]"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Method / Overview
-     ============================================================ -->
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-
-        <h2 class="title is-3">Method Overview</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            [METHOD_OVERVIEW_TEXT]
-          </p>
-        </div>
-
-        <div class="content has-text-centered">
-          <img src="./static/images/method.png"
-               alt="Method overview"
-               style="width: 100%;">
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Experiments / Results
-     ============================================================ -->
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-
-        <h2 class="title is-3">Experiments</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            [EXPERIMENT_DESCRIPTION]
-          </p>
-        </div>
-
-        <!-- Example result image -->
-        <div class="content has-text-centered">
-          <img src="./static/images/results.png"
-               alt="Experimental results"
-               style="width: 100%;">
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Optional two-column section
-     Useful for ablations / applications / qualitative results.
-     ============================================================ -->
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Application A</h2>
-
-          <p>
-            [APPLICATION_A_TEXT]
-          </p>
-
-          <video autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/application_a.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Application B</h2>
-
-          <p>
-            [APPLICATION_B_TEXT]
-          </p>
-
-          <video autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/application_b.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Related links
-     ============================================================ -->
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            <a href="[RELATED_URL_1]">[RELATED_WORK_1]</a> — [SHORT_DESCRIPTION]
-          </p>
-
-          <p>
-            <a href="[RELATED_URL_2]">[RELATED_WORK_2]</a> — [SHORT_DESCRIPTION]
-          </p>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     BibTeX
-     ============================================================ -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-
-    <h2 class="title">BibTeX</h2>
-
-    <pre><code>@article{[BIBTEX_KEY],
-  author  = {[AUTHORS]},
-  title   = {[PROJECT_TITLE]},
-  journal = {[VENUE]},
-  year    = {[YEAR]}
+  <!--
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <pre><code>@inproceedings{anonymous2026propra,
+  title     = {Self-Supervised Anchoring of Fingertip Sensing to Proprioception
+               and Proactive Actions for Robot Imitation Learning},
+  author    = {Anonymous},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2026},
+  note      = {Under review}
 }</code></pre>
+  </section>
+  -->
 
-  </div>
-</section>
+  <footer>
+    <p>
+      CC BY-SA 4.0. Template after the
+      <a href="https://nerfies.github.io/">Nerfies project page</a>.
+      Figures from the submitted manuscript.
+    </p>
+  </footer>
 
-
-<!-- ============================================================
-     Footer
-     ============================================================ -->
-<footer class="footer">
-  <div class="container">
-
-    <div class="content has-text-centered">
-
-      <a class="icon-link"
-         href="[PAPER_PDF_URL]">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-
-      <a class="icon-link"
-         href="[GITHUB_OR_LAB_URL]">
-        <i class="fab fa-github"></i>
-      </a>
-
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This website template is based on the
-            <a href="https://nerfies.github.io/">Nerfies project page</a>
-            and follows its CC BY-SA 4.0 licensing requirement.
-          </p>
-
-          <p>
-            Replace all placeholders written as
-            <code>[LIKE_THIS]</code>
-            before publication.
-          </p>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</footer>
+</main>
 
 </body>
 </html>

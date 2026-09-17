@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="eo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PROPRA — Ankrado de Fingropinta Sensado al Propriocepto kaj Proaktivaj Agoj</title>
+<meta name="description"
+      content="PROPRA antaŭtrejnas fingropintajn palpajn kaj proksimecajn kodilojn kontraŭ la propra stato de la roboto kaj ĝiaj sekvaj agoj.">
+<meta name="robots" content="index, follow">
+
+<link rel="alternate" hreflang="en" href="./index.html">
+<link rel="alternate" hreflang="eo" href="./index_epo.html">
+<link rel="alternate" hreflang="x-default" href="./index.html">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="eo">
+<meta property="og:title" content="PROPRA: Ankrado de Fingropinta Sensado al Propriocepto kaj Proaktivaj Agoj">
+<meta property="og:description"
+      content="Propriocepto kaj estontaj agoj disponeblas dum la tuta manipulado — PROPRA uzas ilin kiel sensmotoran ankron por antaŭtrejni palpajn kaj proksimecajn kodilojn.">
+<meta property="og:url" content="https://anonymous.4open.science/w/own-F865/">
+<meta property="og:image" content="./static/images/og_card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="./static/images/og_card.jpg">
+
+<link rel="icon" href="./static/images/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="./static/css/propra.css">
+
+</head>
+
+<body>
+
+<div class="topline">
+  <a href="./index.html" hreflang="en">EN</a>
+  <span>/</span>
+  <a href="./index_epo.html" hreflang="eo" class="is-current" aria-current="page">EO</a>
+</div>
+
+<main class="wrap">
+
+  <header class="head">
+    <p class="status">Sub recenzo</p>
+
+    <h1 class="title">
+      Memgvidata Ankrado de Fingropinta Sensado al Propriocepto
+      kaj Proaktivaj Agoj por Imitada Lernado de Robotoj
+    </h1>
+
+    <p class="expand"><b>PRO</b>priocepta-kaj-<b>PR</b>oaktiva <b>A</b>nkrado</p>
+
+    <p class="byline">Anonima(j) aŭtoro(j)</p>
+    <p class="note">Kaŝitaj pro duoble blinda recenzado.</p>
+
+    <p class="where">
+      <!-- <a href="./static/paper/propra_icra2026_anonymous.pdf">Artikolo</a><span class="sep">/</span> -->
+      <span class="off">arXiv (baldaŭ)</span><span class="sep">/</span><span class="off">Kodo (baldaŭ)</span>
+    </p>
+  </header>
+
+  <!-- Teaser -->
+  <div class="media">
+    <div class="slot">
+      <!-- When the video is ready, delete .waiting below and uncomment one of:
+
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="PROPRA"
+              allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+
+      <video controls playsinline preload="metadata" poster="./static/images/fig1_overview.jpg">
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
+      </video>
+      -->
+      <div class="waiting">
+        <span>Enkonduka video</span>
+        <code>static/videos/teaser.mp4</code>
+      </div>
+    </div>
+  </div>
+
+  <p class="lede">
+    Fingropintaj sensiloj parolas nur eksplode: proksimeco ĝuste antaŭ la kontakto, palpo ĝuste
+    poste. PROPRA ankras ĉiun el ili al io, kion la roboto ĉiam havas &mdash; ĝia nuna stato kaj
+    la agoj, kiujn ĝi tuj plenumos.
+  </p>
+
+  <details>
+    <summary>Resumo</summary>
+    <div>
+      <p>
+        Imitada lernado de robotoj ofte dependas de eksteraj kameraoj, tamen lokajn interagajn indikojn
+        &mdash; kiel proksimecon de objekto, komencon de kontakto kaj prenostaton &mdash; malfacilas
+        observi apud la fingropintoj pro okludo kaj limigita tempa distingivo. Ni studas, kiel efike
+        integri komplementan fingropintan sensadon en imitadan lernadon per premsentemaj palpaj kaj
+        reflektaj proksimecaj sensiloj, kune kun antaŭtrejnitaj sensilaj kodiloj.
+      </p>
+      <p>
+        La du modalecoj donas informojn en malsamaj fazoj de la manipulado: proksimeca sensado estas
+        informoriĉa antaŭ la kontakto, dum palpa sensado iĝas informoriĉa post la kontakto. Tamen, naive
+        aldoni tiujn signalojn al politiko ne konstante plibonigas la rezulton kaj eĉ povas malsuperi
+        nur-vidajn politikojn, kio sugestas, ke maldensajn, faz-dependajn sensilajn signalojn malfacilas
+        ekspluati el limigitaj demonstraĵoj.
+      </p>
+      <p>
+        Tial ni proponas antaŭtrejnan metodon ankritan al propriocepto, <b>PRO</b>priocepta-kaj-<b>PR</b>oaktiva
+        <b>A</b>nkrado (<b>PROPRA</b>), kiu sendepende vicigas la historion de ĉiu fingropinta sensilo kun
+        proprioceptaj kaj agaj segmentoj. Tio donas kontinue disponeblan sensmotoran referencon,
+        permesante ke ĉiu sensilo estu vicigita sendepende dum siaj informoriĉaj fazoj.
+      </p>
+      <p>
+        Eksperimentoj pri realmondaj manipuladaj taskoj montras, ke nia antaŭtrejna metodo plibonigas la
+        mezajn sukcesprocentojn kompare kun nur-vidaj politikoj kaj kun bildankritaj antaŭtrejnaj
+        bazlinioj. Analizo de la reprezentaĵoj krome montras, ke ĝi konservas pli riĉajn informojn pri
+        antaŭkontaktaj statoj, ebligante pli efikan uzon de komplementa fingropinta sensado.
+      </p>
+    </div>
+  </details>
+
+  <section id="method">
+    <h2>Metodo</h2>
+
+    <figure class="media">
+      <a href="./static/images/fig2_pretrain.png" target="_blank" rel="noopener">
+        <img src="./static/images/fig2_pretrain.png"
+             alt="Du antaŭtrejnaj skemoj. (a) Bildankrita vicigo ligas la sensilajn historiojn al bildaj enkorpigoj ĉe la nuna tempopaŝo. (b) PROPRA ligas ĉiun sensilan historion al ankro konstruita el la nuna stato kaj la venonta ago-bloko, sen ajna rekta sensilo-al-sensilo celfunkcio."
+             width="1800" height="648" loading="lazy">
+      </a>
+      <figcaption>
+        (a) Bildankrita antaŭtrejnado vicigas ĉiun sensilon kun tio, kion la kamerao vidas nun.
+        (b) PROPRA vicigas ĝin kun la propra stato de la roboto kaj ĝiaj sekvaj agoj &mdash; referenco,
+        kiu ekzistas ĉe ĉiu paŝo.
+      </figcaption>
+    </figure>
+
+    <p>
+      La historio de ĉiu fingropinto &mdash; 0,5&nbsp;s de 3 palpaj kaj 6 proksimecaj kanaloj &mdash;
+      ricevas propran kodilon. La ankro estas la nuna pozo de la fina efektorilo kaj la malfermo de la
+      prenilo, plus la sekvaj 10 agoj: difinita ĉe ĉiu paŝo, kaj bezonanta neniun kameraon. Kontrasta
+      perdofunkcio tiras ĉiun sensilan enkorpigon al tiu ankro; la kodiloj poste eniras difuzan
+      politikon kaj la ankro estas forlasita.
+    </p>
+  </section>
+
+  <section id="results">
+    <h2>Rezultoj</h2>
+    <p>
+      Kvar taskoj sur UR5e, po 50 demonstraĵoj. PROPRA superas nur-vidajn politikojn kaj bildankritan
+      antaŭtrejnadon laŭ meza sukcesprocento, kaj konservas pli da antaŭkontaktaj informoj en la
+      proksimeca reprezentaĵo. La nombroj troviĝas en la artikolo.
+    </p>
+  </section>
+
+  <section id="video">
+    <h2>Video</h2>
+
+    <div class="media">
+      <div class="slot">
+        <!-- When the video is ready, delete .waiting below and uncomment one of:
+
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="PROPRA"
+                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+
+        <video controls playsinline preload="metadata" poster="./static/images/fig1_overview.jpg">
+          <source src="./static/videos/supplementary.mp4" type="video/mp4">
+        </video>
+        -->
+        <div class="waiting">
+          <span>Suplementa video</span>
+          <code>static/videos/supplementary.mp4</code>
+        </div>
+      </div>
+    </div>
+
+    <ul class="rollouts">
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_pickcup.jpg" aria-label="Plenumo de PickCup">
+          <source src="./static/videos/task_pickcup.mp4" type="video/mp4">
+        </video>
+        <figcaption>PickCup</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_picksponge.jpg" aria-label="Plenumo de PickSponge">
+          <source src="./static/videos/task_picksponge.mp4" type="video/mp4">
+        </video>
+        <figcaption>PickSponge</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_movepen.jpg" aria-label="Plenumo de MovePen">
+          <source src="./static/videos/task_movepen.mp4" type="video/mp4">
+        </video>
+        <figcaption>MovePen</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_openlid.jpg" aria-label="Plenumo de OpenLid">
+          <source src="./static/videos/task_openlid.mp4" type="video/mp4">
+        </video>
+        <figcaption>OpenLid</figcaption>
+      </figure></li>
+    </ul>
+  </section>
+
+  <!--
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <pre><code>@inproceedings{anonymous2026propra,
+  title     = {Self-Supervised Anchoring of Fingertip Sensing to Proprioception
+               and Proactive Actions for Robot Imitation Learning},
+  author    = {Anonymous},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2026},
+  note      = {Under review}
+}</code></pre>
+  </section>
+  -->
+
+  <footer>
+    <p>
+      CC BY-SA 4.0. Ŝablono laŭ la <a href="https://nerfies.github.io/">projektpaĝo de Nerfies</a>.
+      Figuroj el la submetita manuskripto.
+    </p>
+  </footer>
+
+</main>
+
+</body>
+</html>
