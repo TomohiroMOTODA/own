@@ -1,36 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>PROPRA — Anchoring Fingertip Sensing to Proprioception and Proactive Actions</title>
-<meta name="description"
-      content="PROPRA pretrains fingertip tactile and proximity encoders against the robot's own state and its next actions.">
-<meta name="robots" content="index, follow">
+<title>PROPRA</title>
 
-<link rel="alternate" hreflang="en" href="./index.html">
-<link rel="alternate" hreflang="eo" href="./index_epo.html">
-<link rel="alternate" hreflang="x-default" href="./index.html">
-
-<meta property="og:type" content="website">
-<meta property="og:locale" content="en">
-<meta property="og:title" content="PROPRA: Anchoring Fingertip Sensing to Proprioception and Proactive Actions">
-<meta property="og:description"
-      content="Proprioception and future actions are available throughout manipulation — PROPRA uses them as a sensorimotor anchor to pretrain tactile and proximity encoders.">
-<meta property="og:url" content="https://anonymous.4open.science/w/own-F865/">
-<meta property="og:image" content="./static/images/og_card.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="./static/images/og_card.jpg">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
 
 <link rel="icon" href="./static/images/favicon.svg">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <link rel="stylesheet" href="./static/css/propra.css">
-
 </head>
 
 <body>
@@ -56,10 +37,9 @@
     <p class="byline">Anonymous Author(s)</p>
     <p class="note">Withheld for double-blind review.</p>
 
-    <p class="where">
-      <!-- <a href="./static/paper/propra_icra2026_anonymous.pdf">Paper</a><span class="sep">/</span> -->
+    <!-- <p class="where">
       <span class="off">arXiv (soon)</span><span class="sep">/</span><span class="off">Code (soon)</span>
-    </p>
+    </p> -->
   </header>
 
   <!-- Teaser -->
@@ -80,6 +60,39 @@
       </div>
     </div>
   </div>
+
+  <section cl>
+    <ul class="rollouts">
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_pickcup.jpg" aria-label="PickCup rollout">
+          <source src="./static/videos/task_pickcup.mp4" type="video/mp4">
+        </video>
+        <figcaption>PickCup</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_picksponge.jpg" aria-label="PickSponge rollout">
+          <source src="./static/videos/task_picksponge.mp4" type="video/mp4">
+        </video>
+        <figcaption>PickSponge</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_movepen.jpg" aria-label="MovePen rollout">
+          <source src="./static/videos/task_movepen.mp4" type="video/mp4">
+        </video>
+        <figcaption>MovePen</figcaption>
+      </figure></li>
+      <li><figure>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="./static/images/task_openlid.jpg" aria-label="OpenLid rollout">
+          <source src="./static/videos/task_openlid.mp4" type="video/mp4">
+        </video>
+        <figcaption>OpenLid</figcaption>
+      </figure></li>
+    </ul>
+  </section>
 
   <p class="lede">
     Fingertip sensors speak only in bursts: proximity just before contact, tactile just after.
@@ -172,52 +185,7 @@
         </div>
       </div>
     </div>
-
-    <ul class="rollouts">
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_pickcup.jpg" aria-label="PickCup rollout">
-          <source src="./static/videos/task_pickcup.mp4" type="video/mp4">
-        </video>
-        <figcaption>PickCup</figcaption>
-      </figure></li>
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_picksponge.jpg" aria-label="PickSponge rollout">
-          <source src="./static/videos/task_picksponge.mp4" type="video/mp4">
-        </video>
-        <figcaption>PickSponge</figcaption>
-      </figure></li>
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_movepen.jpg" aria-label="MovePen rollout">
-          <source src="./static/videos/task_movepen.mp4" type="video/mp4">
-        </video>
-        <figcaption>MovePen</figcaption>
-      </figure></li>
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_openlid.jpg" aria-label="OpenLid rollout">
-          <source src="./static/videos/task_openlid.mp4" type="video/mp4">
-        </video>
-        <figcaption>OpenLid</figcaption>
-      </figure></li>
-    </ul>
   </section>
-
-  <!--
-  <section id="bibtex">
-    <h2>BibTeX</h2>
-    <pre><code>@inproceedings{anonymous2026propra,
-  title     = {Self-Supervised Anchoring of Fingertip Sensing to Proprioception
-               and Proactive Actions for Robot Imitation Learning},
-  author    = {Anonymous},
-  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
-  year      = {2026},
-  note      = {Under review}
-}</code></pre>
-  </section>
-  -->
 
   <footer>
     <p>
