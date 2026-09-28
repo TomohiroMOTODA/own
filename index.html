@@ -16,23 +16,27 @@
 
 <body>
 
-<div class="topline">
+<!-- <div class="topline">
   <a href="./index.html" hreflang="en" class="is-current" aria-current="page">EN</a>
   <span>/</span>
   <a href="./index_epo.html" hreflang="eo">EO</a>
-</div>
+</div> -->
 
 <main class="wrap">
 
   <header class="head">
     <p class="status">Under review</p>
 
+    
+
     <h1 class="title">
-      Self-Supervised Anchoring of Fingertip Sensing to Proprioception
+       <span style="color: rgb(252, 27, 252);">PROPRA</span><br>
+       <p class="expand"><b>PRO</b>prioceptive-and-<b>PR</b>oactive <b>A</b>nchoring</p>
+       Self-Supervised Anchoring of Fingertip Sensing to Proprioception
       and Proactive Actions for Robot Imitation Learning
     </h1>
 
-    <p class="expand"><b>PRO</b>prioceptive-and-<b>PR</b>oactive <b>A</b>nchoring</p>
+    
 
     <p class="byline">Anonymous Author(s)</p>
     <p class="note">Withheld for double-blind review.</p>
@@ -45,54 +49,21 @@
   <!-- Teaser -->
   <div class="media">
     <div class="slot">
-      <!-- When the video is ready, delete .waiting below and uncomment one of:
-
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="PROPRA"
-              allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-
-      <video controls playsinline preload="metadata" poster="./static/images/fig1_overview.jpg">
+      <video
+        autoplay
+        controls
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="./static/images/teaser.jpg"
+        aria-label="PROPRA teaser video"
+      >
         <source src="./static/videos/teaser.mp4" type="video/mp4">
+        Your browser does not support the video tag.
       </video>
-      -->
-      <div class="waiting">
-        <span>Teaser video</span>
-        <code>static/videos/teaser.mp4</code>
-      </div>
     </div>
   </div>
-
-  <section cl>
-    <ul class="rollouts">
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_pickcup.jpg" aria-label="PickCup rollout">
-          <source src="./static/videos/task_pickcup.mp4" type="video/mp4">
-        </video>
-        <figcaption>PickCup</figcaption>
-      </figure></li>
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_picksponge.jpg" aria-label="PickSponge rollout">
-          <source src="./static/videos/task_picksponge.mp4" type="video/mp4">
-        </video>
-        <figcaption>PickSponge</figcaption>
-      </figure></li>
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_movepen.jpg" aria-label="MovePen rollout">
-          <source src="./static/videos/task_movepen.mp4" type="video/mp4">
-        </video>
-        <figcaption>MovePen</figcaption>
-      </figure></li>
-      <li><figure>
-        <video autoplay muted loop playsinline preload="metadata"
-               poster="./static/images/task_openlid.jpg" aria-label="OpenLid rollout">
-          <source src="./static/videos/task_openlid.mp4" type="video/mp4">
-        </video>
-        <figcaption>OpenLid</figcaption>
-      </figure></li>
-    </ul>
-  </section>
 
   <p class="lede">
     Fingertip sensors speak only in bursts: proximity just before contact, tactile just after.
@@ -167,6 +138,39 @@
 
   <section id="video">
     <h2>Video</h2>
+
+    <section cl>
+      <ul class="rollouts">
+        <li><figure>
+          <video autoplay muted loop playsinline preload="metadata"
+                poster="./static/images/task_pickcup.jpg" aria-label="PickCup rollout">
+            <source src="./static/videos/task_pickcup.mp4" type="video/mp4">
+          </video>
+          <figcaption>PickCup</figcaption>
+        </figure></li>
+        <li><figure>
+          <video autoplay muted loop playsinline preload="metadata"
+                poster="./static/images/task_picksponge.jpg" aria-label="PickSponge rollout">
+            <source src="./static/videos/task_picksponge.mp4" type="video/mp4">
+          </video>
+          <figcaption>PickSponge</figcaption>
+        </figure></li>
+        <li><figure>
+          <video autoplay muted loop playsinline preload="metadata"
+                poster="./static/images/task_movepen.jpg" aria-label="MovePen rollout">
+            <source src="./static/videos/task_movepen.mp4" type="video/mp4">
+          </video>
+          <figcaption>MovePen</figcaption>
+        </figure></li>
+        <li><figure>
+          <video autoplay muted loop playsinline preload="metadata"
+                poster="./static/images/task_openlid.jpg" aria-label="OpenLid rollout">
+            <source src="./static/videos/task_openlid.mp4" type="video/mp4">
+          </video>
+          <figcaption>OpenLid</figcaption>
+        </figure></li>
+      </ul>
+    </section>
 
     <div class="media">
       <div class="slot">
