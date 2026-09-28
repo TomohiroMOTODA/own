@@ -132,6 +132,152 @@ h2 {
   border-top: 1px solid var(--line);
 }
 
+h3 {
+  font-size: .95rem;
+  margin: 2.2rem 0 .7rem;
+}
+h2 + h3 { margin-top: 0; }
+
+ol, ul { margin: 0 0 1.1em; padding-left: 1.4em; }
+li { margin-bottom: .25em; }
+
+/* a figure-width video (no fixed 16:9 slot) */
+.media > video {
+  display: block; width: 100%; height: auto;
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+}
+
+/* ---------- tables: hairlines only ----------------------------------------- */
+.table-wrap { overflow-x: auto; margin: 1.8rem 0 2rem; }
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: .86rem; line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+caption {
+  caption-side: bottom; text-align: left;
+  font-size: .88rem; line-height: 1.55; color: var(--ink-3); padding-top: .8rem;
+}
+th, td { padding: .38rem .6rem; text-align: right; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; padding-left: 0; }
+th:last-child, td:last-child { padding-right: 0; }
+thead th { font-weight: 600; color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+tbody tr + tr td { border-top: 1px solid var(--line-soft); }
+tfoot td, tr.ours td { border-top: 1px solid var(--line); color: var(--ink); }
+tbody:last-child tr:last-child td, tfoot tr:last-child td { border-bottom: 1px solid var(--line); }
+
+/* ---------- success-rate chart --------------------------------------------- */
+/* Series colours are taken from the paper's own figures (Figs. 5–7), so the
+   chart reads as one more figure rather than page chrome. */
+.chart {
+  --c-vis:  #c3c2b7;
+  --c-none: #898781;
+  --c-img:  #2a78d6;
+  --c-pair: #eb6834;
+  --c-ours: #4a3aa7;
+  --label:  7.2rem;   /* task-name column */
+  --valw:   2.6rem;   /* value column     */
+}
+.s-vis  { --c: var(--c-vis); }
+.s-none { --c: var(--c-none); }
+.s-img  { --c: var(--c-img); }
+.s-pair { --c: var(--c-pair); }
+.s-ours { --c: var(--c-ours); }
+
+.chart-legend {
+  display: flex; flex-wrap: wrap; gap: .3rem 1.1rem;
+  list-style: none; padding: 0; margin: 0 0 1.2rem;
+  font-size: .8rem; color: var(--ink-3);
+}
+.chart-legend li { display: inline-flex; align-items: center; gap: .4rem; margin: 0; }
+.chart-legend li::before {
+  content: ''; width: .7rem; height: .7rem; background: var(--c); flex: none;
+}
+.chart-legend .s-ours { color: var(--ink); font-weight: 600; }
+
+.chart-group {
+  display: grid; grid-template-columns: var(--label) 1fr;
+  align-items: center; padding: .55rem 0;
+}
+.chart-group + .chart-group { border-top: 1px solid var(--line-soft); }
+.chart-group.is-avg { border-top: 1px solid var(--line); }
+.chart-group.chart-axis { border-top: 0; padding-top: .2rem; }
+.chart-task { margin: 0; font-size: .86rem; color: var(--ink-2); }
+.is-avg .chart-task { font-weight: 600; color: var(--ink); }
+
+.bar-row {
+  display: grid; grid-template-columns: 1fr var(--valw);
+  align-items: center; column-gap: .5rem;
+}
+.track {
+  position: relative; display: block; height: 15px;
+  /* 25 / 50 / 75 % gridlines, continuous down a group */
+  background: linear-gradient(to right,
+    transparent calc(25% - .5px), var(--line-soft) 0, var(--line-soft) calc(25% + .5px), transparent 0,
+    transparent calc(50% - .5px), var(--line-soft) 0, var(--line-soft) calc(50% + .5px), transparent 0,
+    transparent calc(75% - .5px), var(--line-soft) 0, var(--line-soft) calc(75% + .5px), transparent 0);
+  border-left: 1px solid var(--line);
+}
+.bar {
+  position: absolute; left: 0; top: 2px; bottom: 2px;
+  width: calc(var(--v) * 1%);
+  background: var(--c);
+  transform-origin: left center;
+}
+.err {                      /* ±1 SD whisker */
+  position: absolute; top: 50%; height: 1px;
+  left: calc((var(--v) - var(--sd)) * 1%);
+  width: calc(var(--sd) * 2%);
+  background: var(--ink);
+}
+.err::before, .err::after {
+  content: ''; position: absolute; top: -3px; width: 1px; height: 7px; background: var(--ink);
+}
+.err::before { left: 0; }
+.err::after  { right: 0; }
+.val {
+  font-size: .76rem; color: var(--ink-3); text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.s-ours .val { color: var(--ink); font-weight: 600; }
+
+.chart-axis .track { height: 1.1rem; background: none; border-left: 0; }
+.chart-axis .track span {
+  position: absolute; left: calc(var(--t) * 1%); transform: translateX(-50%);
+  font-size: .72rem; color: var(--ink-4);
+}
+.chart-axis .track span:first-child { transform: none; }
+.chart-axis .track span:last-child  { transform: translateX(-100%); }
+
+.chart-table { margin: .9rem 0 0; }
+.chart-table .table-wrap { margin: .6rem 0 0; }
+
+/* growth: only armed when JS is there to trigger it, so no-JS readers get the
+   finished chart. Groups start one after another, bars within a group ripple. */
+.js .chart .bar { transform: scaleX(0); }
+.js .chart .err, .js .chart .val { opacity: 0; }
+.js .chart.is-in .bar {
+  transform: scaleX(1);
+  transition: transform .9s cubic-bezier(.2, .7, .2, 1);
+  transition-delay: calc(var(--g) * 140ms + var(--i) * 60ms);
+}
+.js .chart.is-in .err,
+.js .chart.is-in .val {
+  opacity: 1;
+  transition: opacity .35s ease;
+  transition-delay: calc(var(--g) * 140ms + var(--i) * 60ms + 750ms);
+}
+
+@media (max-width: 620px) {
+  .chart-group { grid-template-columns: 1fr; row-gap: .35rem; }
+  .chart-axis .chart-task { display: none; }
+}
+@media print, (prefers-reduced-motion: reduce) {
+  .js .chart .bar { transform: none; }
+  .js .chart .err, .js .chart .val { opacity: 1; }
+  .js .chart.is-in .bar, .js .chart.is-in .err, .js .chart.is-in .val { transition: none; }
+}
+
 /* ---------- lede ----------------------------------------------------------- */
 .lede { font-size: 1.06rem; color: var(--ink); margin: 2.2rem 0 1.4rem; }
 

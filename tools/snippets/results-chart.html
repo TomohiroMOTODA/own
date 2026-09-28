@@ -1,0 +1,128 @@
+<!--
+  Success-rate bar charts, lifted out of index.html to keep the published
+  results light while the paper is under review.
+
+  To put them back:
+    1. paste the markup below into the #results section of index.html
+    2. paste the <style> block into static/css/propra.css
+  The page ships no JavaScript, so the bars render at their final width straight
+  away — there is no scroll animation to restore.
+
+  The colours below assume the accent palette this page no longer uses; give the
+  four series their own values, or the bars will all come out ink-coloured.
+
+  Numbers are Table II of the manuscript. Every bar carries its own mean in --v
+  and standard deviation in --sd, so edit them in place if the numbers change.
+-->
+
+<style>
+/* ---------- CSS bar chart -------------------------------------------------- */
+.chart { background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+         padding: 22px 24px 18px; box-shadow: var(--shadow); }
+.chart-legend { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin-bottom: 1.3rem; font-size: .85rem; color: var(--ink-3); }
+.chart-legend span { display: inline-flex; align-items: center; gap: .42rem; }
+.swatch { width: 12px; height: 12px; border-radius: 3px; background: var(--c); flex: none; }
+.s-ours     { --c: var(--accent); }
+.s-img      { --c: var(--baseline); }
+.s-imgpair  { --c: #f06b3c; }
+.s-none     { --c: var(--neutral); }
+
+.chart-group { margin-bottom: 1.5rem; }
+.chart-group:last-of-type { margin-bottom: .4rem; }
+.chart-group > h4 {
+  font-size: .8rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--ink-4); margin: 0 0 .55rem;
+}
+.chart-group.avg { margin-bottom: .4rem; }
+.bar-row { display: grid; grid-template-columns: 116px 1fr 92px; align-items: center; gap: .7rem; margin-bottom: .3rem; }
+.bar-name { font-size: .84rem; color: var(--ink-3); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { position: relative; height: 19px; background: var(--bg-soft); border-radius: 5px; overflow: visible; }
+.bar-track::after { content: ''; position: absolute; inset: 0; border-radius: 5px; border: 1px solid var(--line-soft); pointer-events: none; }
+.bar {
+  position: relative; height: 100%; border-radius: 5px; background: var(--c, var(--neutral));
+  width: calc(var(--v) * 1%);
+}
+.bar .whisker {
+  position: absolute; top: 50%; height: 1.5px; background: rgba(20,20,40,.42);
+  width: calc(var(--sd) * 2%); right: calc(var(--sd) * -1%); transform: translateY(-50%);
+}
+.bar .whisker::before, .bar .whisker::after {
+  content: ''; position: absolute; top: 50%; width: 1.5px; height: 8px;
+  background: rgba(20,20,40,.42); transform: translateY(-50%);
+}
+.bar .whisker::before { left: 0; } .bar .whisker::after { right: 0; }
+.bar-val { font-size: .86rem; font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; }
+.bar-val small { color: var(--ink-4); font-size: .78em; }
+.b-ours    { --c: var(--accent); }
+.b-img     { --c: var(--baseline); }
+.b-imgpair { --c: #f06b3c; }
+.b-none    { --c: var(--neutral); }
+.bar-row.is-ours .bar-name { color: var(--accent-dark); font-weight: 650; }
+.bar-row.is-ours .bar-val  { color: var(--ink); font-weight: 650; }
+.chart-note { font-size: .8rem; color: var(--ink-4); margin: .7rem 0 0; }
+.chart-axis { display: flex; justify-content: space-between; font-size: .74rem; color: var(--ink-4);
+              margin: .3rem 0 0 calc(116px + .7rem); padding-right: calc(92px + .7rem);
+              border-top: 1px solid var(--line-soft); padding-top: .35rem; }
+@media (max-width: 620px) {
+  .bar-row { grid-template-columns: 84px 1fr 78px; gap: .5rem; }
+  .bar-name { font-size: .76rem; } .bar-val { font-size: .78rem; }
+  .chart-axis { margin-left: calc(84px + .5rem); padding-right: calc(78px + .5rem); }
+}
+/* the per-task chart sits inside a <details>, which needs no second card edge */
+details.more .chart { box-shadow: none; }
+</style>
+
+<div class="chart">
+  <div class="chart-legend">
+    <span><i class="swatch s-ours"></i> PROPRA (ours)</span>
+    <span><i class="swatch s-img"></i> Image anchor</span>
+    <span><i class="swatch s-imgpair"></i> Image anchor + direct pair</span>
+    <span><i class="swatch s-none"></i> No pretraining</span>
+  </div>
+  <div class="chart-group avg">
+    <div class="bar-row is-ours"><span class="bar-name">PROPRA</span><div class="bar-track"><div class="bar b-ours" style="--v:75.0"></div></div><span class="bar-val">75.0</span></div>
+    <div class="bar-row"><span class="bar-name">Image anchor</span><div class="bar-track"><div class="bar b-img" style="--v:71.7"></div></div><span class="bar-val">71.7</span></div>
+    <div class="bar-row"><span class="bar-name">+ direct pair</span><div class="bar-track"><div class="bar b-imgpair" style="--v:72.1"></div></div><span class="bar-val">72.1</span></div>
+    <div class="bar-row"><span class="bar-name">None</span><div class="bar-track"><div class="bar b-none" style="--v:40.4"></div></div><span class="bar-val">40.4</span></div>
+  </div>
+  <div class="chart-axis"><span>0&thinsp;%</span><span>50&thinsp;%</span><span>100&thinsp;%</span></div>
+  <p class="chart-note">Average success rate [%] over the four tasks.</p>
+</div>
+
+<details class="more">
+  <summary>Per-task breakdown</summary>
+  <div>
+    <div class="chart">
+      <div class="chart-group">
+        <h4>PickCup</h4>
+        <div class="bar-row is-ours"><span class="bar-name">PROPRA</span><div class="bar-track"><div class="bar b-ours" style="--v:81.7;--sd:5.8"><span class="whisker"></span></div></div><span class="bar-val">81.7 <small>±5.8</small></span></div>
+        <div class="bar-row"><span class="bar-name">Image anchor</span><div class="bar-track"><div class="bar b-img" style="--v:75.0;--sd:13.2"><span class="whisker"></span></div></div><span class="bar-val">75.0 <small>±13.2</small></span></div>
+        <div class="bar-row"><span class="bar-name">+ direct pair</span><div class="bar-track"><div class="bar b-imgpair" style="--v:76.7;--sd:7.6"><span class="whisker"></span></div></div><span class="bar-val">76.7 <small>±7.6</small></span></div>
+        <div class="bar-row"><span class="bar-name">None</span><div class="bar-track"><div class="bar b-none" style="--v:61.7;--sd:5.8"><span class="whisker"></span></div></div><span class="bar-val">61.7 <small>±5.8</small></span></div>
+      </div>
+      <div class="chart-group">
+        <h4>PickSponge</h4>
+        <div class="bar-row is-ours"><span class="bar-name">PROPRA</span><div class="bar-track"><div class="bar b-ours" style="--v:81.7;--sd:7.6"><span class="whisker"></span></div></div><span class="bar-val">81.7 <small>±7.6</small></span></div>
+        <div class="bar-row"><span class="bar-name">Image anchor</span><div class="bar-track"><div class="bar b-img" style="--v:75.0;--sd:13.2"><span class="whisker"></span></div></div><span class="bar-val">75.0 <small>±13.2</small></span></div>
+        <div class="bar-row"><span class="bar-name">+ direct pair</span><div class="bar-track"><div class="bar b-imgpair" style="--v:71.7;--sd:2.9"><span class="whisker"></span></div></div><span class="bar-val">71.7 <small>±2.9</small></span></div>
+        <div class="bar-row"><span class="bar-name">None</span><div class="bar-track"><div class="bar b-none" style="--v:51.7;--sd:12.6"><span class="whisker"></span></div></div><span class="bar-val">51.7 <small>±12.6</small></span></div>
+      </div>
+      <div class="chart-group">
+        <h4>MovePen</h4>
+        <div class="bar-row is-ours"><span class="bar-name">PROPRA</span><div class="bar-track"><div class="bar b-ours" style="--v:63.3;--sd:5.8"><span class="whisker"></span></div></div><span class="bar-val">63.3 <small>±5.8</small></span></div>
+        <div class="bar-row"><span class="bar-name">Image anchor</span><div class="bar-track"><div class="bar b-img" style="--v:60.0;--sd:14.1"><span class="whisker"></span></div></div><span class="bar-val">60.0 <small>±14.1</small></span></div>
+        <div class="bar-row"><span class="bar-name">+ direct pair</span><div class="bar-track"><div class="bar b-imgpair" style="--v:63.3;--sd:2.9"><span class="whisker"></span></div></div><span class="bar-val">63.3 <small>±2.9</small></span></div>
+        <div class="bar-row"><span class="bar-name">None</span><div class="bar-track"><div class="bar b-none" style="--v:20.0;--sd:8.7"><span class="whisker"></span></div></div><span class="bar-val">20.0 <small>±8.7</small></span></div>
+      </div>
+      <div class="chart-group">
+        <h4>OpenLid</h4>
+        <div class="bar-row is-ours"><span class="bar-name">PROPRA</span><div class="bar-track"><div class="bar b-ours" style="--v:73.3;--sd:5.8"><span class="whisker"></span></div></div><span class="bar-val">73.3 <small>±5.8</small></span></div>
+        <div class="bar-row"><span class="bar-name">Image anchor</span><div class="bar-track"><div class="bar b-img" style="--v:76.7;--sd:12.6"><span class="whisker"></span></div></div><span class="bar-val">76.7 <small>±12.6</small></span></div>
+        <div class="bar-row"><span class="bar-name">+ direct pair</span><div class="bar-track"><div class="bar b-imgpair" style="--v:76.7;--sd:7.6"><span class="whisker"></span></div></div><span class="bar-val">76.7 <small>±7.6</small></span></div>
+        <div class="bar-row"><span class="bar-name">None</span><div class="bar-track"><div class="bar b-none" style="--v:28.3;--sd:15.3"><span class="whisker"></span></div></div><span class="bar-val">28.3 <small>±15.3</small></span></div>
+      </div>
+      <div class="chart-axis"><span>0&thinsp;%</span><span>50&thinsp;%</span><span>100&thinsp;%</span></div>
+      <p class="chart-note">Mean over 3 seeds; whiskers show &plusmn;1&nbsp;SD.</p>
+    </div>
+  </div>
+</details>

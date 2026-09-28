@@ -12,6 +12,7 @@
 
 <link rel="icon" href="./static/images/favicon.svg">
 <link rel="stylesheet" href="./static/css/propra.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
@@ -103,6 +104,40 @@
     </div>
   </details>
 
+  <section id="sensing">
+    <h2>Two sensors, two moments</h2>
+
+    <figure class="media">
+      <a href="./static/images/fig1_overview.jpg" target="_blank" rel="noopener">
+        <img src="./static/images/fig1_overview.jpg"
+             alt="(a) The multimodal fingertip on a Robotiq gripper: three FSR400S tactile sensors under a triangular inner surface and six LED-phototransistor proximity channels. (b) Proximity is informative before contact, tactile after contact, proprioception throughout, and the action chunk looks ahead. (c) PROPRA aligns tactile and proximity histories to proprioception and the action chunk, with no direct sensor-to-sensor alignment."
+             width="1372" height="732" loading="lazy">
+      </a>
+      <figcaption>
+        Each fingertip carries tactile (3&nbsp;ch) and proximity (6&nbsp;ch) sensing, retrofitted to an
+        off-the-shelf gripper.
+      </figcaption>
+    </figure>
+
+    <figure class="media">
+      <video autoplay controls muted loop playsinline preload="metadata"
+             poster="./static/images/sample.jpg" width="1120" height="480"
+             aria-label="Recorded sensor streams during a grasp">
+        <source src="./static/videos/sample.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        One grasp. <b>Proximity</b> (bottom) rises as the fingers close in; <b>tactile</b> jumps only at
+        contact. The rest of the time, each is flat.
+      </figcaption>
+    </figure>
+
+    <p>
+      That is the catch: simply feeding these signals to the policy makes it <em>worse</em> than vision
+      alone on two of four tasks, and pairing the two sensors in pretraining finds little to align
+      &mdash; one of them is usually flat.
+    </p>
+  </section>
+
   <section id="method">
     <h2>Method</h2>
 
@@ -113,27 +148,139 @@
              width="1800" height="648" loading="lazy">
       </a>
       <figcaption>
-        (a) Image-anchored pretraining lines each sensor up with what the camera sees now.
-        (b) PROPRA lines it up with the robot&rsquo;s own state and its next actions &mdash; a reference
-        that exists at every step.
+        (a) Image-anchored pretraining. (b) PROPRA: each sensor&rsquo;s past is aligned with the
+        robot&rsquo;s present state and next actions; the sensors are never paired with each other.
       </figcaption>
     </figure>
 
     <p>
-      Each fingertip history &mdash; 0.5&nbsp;s of 3 tactile and 6 proximity channels &mdash; gets its own
-      encoder. The anchor is the current end-effector pose and gripper opening plus the next 10 actions:
-      defined at every step, and needing no camera. A contrastive loss pulls each sensor embedding toward
-      that anchor; the encoders then go into a diffusion policy and the anchor is dropped.
+      So anchor each sensor to something the robot <em>always</em> has: its current state and the
+      next ~1.7&nbsp;s of actions. A contrastive loss aligns each 0.5&nbsp;s sensor history with that
+      anchor; the encoders then go into a diffusion policy and the anchor is dropped &mdash; no extra
+      labels, no camera needed for pretraining.
     </p>
   </section>
 
   <section id="results">
     <h2>Results</h2>
-    <p>
-      Four tasks on a UR5e, 20 demonstrations each. PROPRA beats vision-only policies and image-anchored
-      pretraining on average success rate, and keeps more pre-contact information in the proximity
-      representation. The numbers are in the paper.
-    </p>
+
+    <p>Four real-robot tasks, 50 demonstrations each. With PROPRA, the fingertip sensors pay off.</p>
+
+    <figure class="media chart" id="success-chart">
+      <ul class="chart-legend" aria-hidden="true">
+        <li class="s-vis">Vision only</li>
+        <li class="s-none">Sensors, no pretraining</li>
+        <li class="s-img">Image anchor</li>
+        <li class="s-pair">Image anchor + pair</li>
+        <li class="s-ours">PROPRA (ours)</li>
+      </ul>
+      <div class="chart-plot" role="img"
+           aria-label="Success rate per task. Average: vision only 30.4%, sensors without pretraining 40.4%, image anchor 71.7%, image anchor plus pair 72.1%, PROPRA 75.0%. Exact values in the table below.">
+      <div class="chart-group">
+        <p class="chart-task">PickCup</p>
+        <div class="chart-bars">
+          <div class="bar-row s-vis" style="--v:11.7;--sd:7.6;--g:0;--i:0"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">11.7</span></div>
+          <div class="bar-row s-none" style="--v:61.7;--sd:5.8;--g:0;--i:1"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">61.7</span></div>
+          <div class="bar-row s-img" style="--v:75.0;--sd:13.2;--g:0;--i:2"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">75.0</span></div>
+          <div class="bar-row s-pair" style="--v:76.7;--sd:7.6;--g:0;--i:3"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">76.7</span></div>
+          <div class="bar-row s-ours" style="--v:81.7;--sd:5.8;--g:0;--i:4"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">81.7</span></div>
+        </div>
+      </div>
+      <div class="chart-group">
+        <p class="chart-task">PickSponge</p>
+        <div class="chart-bars">
+          <div class="bar-row s-vis" style="--v:35.0;--sd:5.0;--g:1;--i:0"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">35.0</span></div>
+          <div class="bar-row s-none" style="--v:51.7;--sd:12.6;--g:1;--i:1"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">51.7</span></div>
+          <div class="bar-row s-img" style="--v:75.0;--sd:13.2;--g:1;--i:2"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">75.0</span></div>
+          <div class="bar-row s-pair" style="--v:71.7;--sd:2.9;--g:1;--i:3"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">71.7</span></div>
+          <div class="bar-row s-ours" style="--v:81.7;--sd:7.6;--g:1;--i:4"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">81.7</span></div>
+        </div>
+      </div>
+      <div class="chart-group">
+        <p class="chart-task">MovePen</p>
+        <div class="chart-bars">
+          <div class="bar-row s-vis" style="--v:31.7;--sd:10.4;--g:2;--i:0"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">31.7</span></div>
+          <div class="bar-row s-none" style="--v:20.0;--sd:8.7;--g:2;--i:1"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">20.0</span></div>
+          <div class="bar-row s-img" style="--v:60.0;--sd:14.1;--g:2;--i:2"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">60.0</span></div>
+          <div class="bar-row s-pair" style="--v:63.3;--sd:2.9;--g:2;--i:3"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">63.3</span></div>
+          <div class="bar-row s-ours" style="--v:63.3;--sd:5.8;--g:2;--i:4"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">63.3</span></div>
+        </div>
+      </div>
+      <div class="chart-group">
+        <p class="chart-task">OpenLid</p>
+        <div class="chart-bars">
+          <div class="bar-row s-vis" style="--v:43.3;--sd:7.6;--g:3;--i:0"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">43.3</span></div>
+          <div class="bar-row s-none" style="--v:28.3;--sd:15.3;--g:3;--i:1"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">28.3</span></div>
+          <div class="bar-row s-img" style="--v:76.7;--sd:12.6;--g:3;--i:2"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">76.7</span></div>
+          <div class="bar-row s-pair" style="--v:76.7;--sd:7.6;--g:3;--i:3"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">76.7</span></div>
+          <div class="bar-row s-ours" style="--v:73.3;--sd:5.8;--g:3;--i:4"><span class="track"><span class="bar"></span><span class="err"></span></span><span class="val">73.3</span></div>
+        </div>
+      </div>
+      <div class="chart-group is-avg">
+        <p class="chart-task">Avg.</p>
+        <div class="chart-bars">
+          <div class="bar-row s-vis" style="--v:30.4;--sd:0;--g:4;--i:0"><span class="track"><span class="bar"></span></span><span class="val">30.4</span></div>
+          <div class="bar-row s-none" style="--v:40.4;--sd:0;--g:4;--i:1"><span class="track"><span class="bar"></span></span><span class="val">40.4</span></div>
+          <div class="bar-row s-img" style="--v:71.7;--sd:0;--g:4;--i:2"><span class="track"><span class="bar"></span></span><span class="val">71.7</span></div>
+          <div class="bar-row s-pair" style="--v:72.1;--sd:0;--g:4;--i:3"><span class="track"><span class="bar"></span></span><span class="val">72.1</span></div>
+          <div class="bar-row s-ours" style="--v:75.0;--sd:0;--g:4;--i:4"><span class="track"><span class="bar"></span></span><span class="val">75.0</span></div>
+        </div>
+      </div>
+      <div class="chart-group chart-axis" aria-hidden="true">
+        <p class="chart-task"></p>
+        <div class="chart-bars">
+          <div class="bar-row"><span class="track"><span style="--t:0">0</span><span style="--t:25">25</span><span style="--t:50">50</span><span style="--t:75">75</span><span style="--t:100">100%</span></span><span class="val"></span></div>
+        </div>
+      </div>
+      </div>
+      <figcaption>
+        Success rate [%], 3 seeds &times; 50 trials, whiskers &plusmn;1&nbsp;SD. Gains on PickCup and
+        PickSponge are within seed variation; on OpenLid, where contact lasts most of the task, the
+        image anchor is ahead.
+      </figcaption>
+      <details class="chart-table">
+        <summary>Table</summary>
+        <div class="table-wrap">
+          <table>
+            <caption>Success rate [%], mean &plusmn; SD over 3 seeds &times; 50 trials. Best pretrained result per column in bold.</caption>
+            <thead>
+              <tr><th>Condition</th><th>PickCup</th><th>PickSponge</th><th>MovePen</th><th>OpenLid</th><th>Avg.</th></tr>
+            </thead>
+            <tbody>
+            <tr><td>Vision only</td><td>11.7 &plusmn; 7.6</td><td>35.0 &plusmn; 5.0</td><td>31.7 &plusmn; 10.4</td><td>43.3 &plusmn; 7.6</td><td>30.4</td></tr>
+            <tr><td>Sensors, no pretraining</td><td>61.7 &plusmn; 5.8</td><td>51.7 &plusmn; 12.6</td><td>20.0 &plusmn; 8.7</td><td>28.3 &plusmn; 15.3</td><td>40.4</td></tr>
+            <tr><td>Image anchor</td><td>75.0 &plusmn; 13.2</td><td>75.0 &plusmn; 13.2</td><td>60.0 &plusmn; 14.1</td><td><b>76.7</b> &plusmn; 12.6</td><td>71.7</td></tr>
+            <tr><td>Image anchor + pair</td><td>76.7 &plusmn; 7.6</td><td>71.7 &plusmn; 2.9</td><td><b>63.3</b> &plusmn; 2.9</td><td><b>76.7</b> &plusmn; 7.6</td><td>72.1</td></tr>
+            <tr class="ours"><td>PROPRA (ours)</td><td><b>81.7</b> &plusmn; 5.8</td><td><b>81.7</b> &plusmn; 7.6</td><td><b>63.3</b> &plusmn; 5.8</td><td>73.3 &plusmn; 5.8</td><td><b>75.0</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </figure>
+
+    <figure class="media">
+      <a href="./static/images/fig6_ttc.png" target="_blank" rel="noopener">
+        <img src="./static/images/fig6_ttc.png"
+             alt="Four panels, one per task, plotting time to contact predicted from the frozen proximity embedding against time from contact onset over the last two seconds before contact, for PROPRA, image anchor and raw proximity, with the ground-truth diagonal."
+             width="1288" height="1274" loading="lazy">
+      </a>
+      <figcaption>
+        The learned proximity embedding tells how far away contact is &mdash; time to contact, linearly
+        decoded over the 2&nbsp;s before touch (diagonal = truth).
+      </figcaption>
+    </figure>
+
+    <figure class="media">
+      <a href="./static/images/fig7_r2.png" target="_blank" rel="noopener">
+        <img src="./static/images/fig7_r2.png"
+             alt="Bar chart of time-to-contact R-squared on new recordings from policy execution, using the regression fitted on demonstrations, per task, for PROPRA, image anchor with and without direct pairs, and raw proximity."
+             width="1346" height="746" loading="lazy">
+      </a>
+      <figcaption>
+        &hellip; and keeps doing so on new episodes recorded during policy execution, where the raw
+        signal collapses. More analysis in the paper.
+      </figcaption>
+    </figure>
   </section>
 
   <section id="video">
@@ -172,24 +319,21 @@
       </ul>
     </section>
 
-    <div class="media">
+    <!-- <div class="media">
       <div class="slot">
-        <!-- When the video is ready, delete .waiting below and uncomment one of:
-
         <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="PROPRA"
                 allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
 
         <video controls playsinline preload="metadata" poster="./static/images/fig1_overview.jpg">
           <source src="./static/videos/supplementary.mp4" type="video/mp4">
         </video>
-        -->
         <div class="waiting">
           <span>Supplementary video</span>
           <code>static/videos/supplementary.mp4</code>
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <footer>
     <p>
@@ -200,6 +344,21 @@
   </footer>
 
 </main>
+
+<script>
+  // Grow the success-rate bars once the chart scrolls into view.
+  (function () {
+    var chart = document.getElementById('success-chart');
+    if (!chart) return;
+    if (!('IntersectionObserver' in window)) { chart.classList.add('is-in'); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { chart.classList.add('is-in'); io.disconnect(); }
+      });
+    }, { threshold: 0.25 });
+    io.observe(chart);
+  })();
+</script>
 
 </body>
 </html>
